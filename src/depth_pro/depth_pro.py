@@ -71,7 +71,7 @@ def create_backbone_model(
 
 def create_model_and_transforms(
     config: DepthProConfig = DEFAULT_MONODEPTH_CONFIG_DICT,
-    device: torch.device = torch.device("cpu"),
+    device: torch.device = torch.device("cuda" if torch.cuda.is_available() else "cpu"),
     precision: torch.dtype = torch.float32,
 ) -> Tuple[DepthPro, Compose]:
     """Create a DepthPro model and load weights from `config.checkpoint_uri`.
